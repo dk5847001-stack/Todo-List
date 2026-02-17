@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Chrome, Edge, Safari */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+        /* ----------------------------------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial;
+            color: antiquewhite;
+        }
+
+        body {
+            min-height: 100vh;
+            width: 100%;
+            background-color: rgb(74, 53, 74);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .container {
+            width: 400px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #9333EA, #027a28);
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(26, 25, 25, 0.3);
+        }
+
+        .head {
+            padding: 10px;
+            border-radius: 40px;
+            background: linear-gradient(135deg, #59c2ee, #203A43, #2C5364);
+            box-shadow: 0 10px 30px rgba(0, 0, 1601, 0.3);
+        }
+
+        input {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 7px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 200px;
+            color: rgb(28, 2, 89);
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 7px;
+            box-shadow: 0 10px 30px rgba(163, 161, 161, 0.3);
+            background-color: rgb(52, 8, 230);
+            width: 200px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: rgb(30, 3, 128);
+            transition: all .3s linear;
+            border: 1px solid gray;
+            color: yellow;
+
+        }
+
+        .hide-scrollbar {
+            width: 300px;
+            height: 200px;
+            border: 1px solid gray;
+            border-radius: 8px;
+            overflow-y: scroll;
+        }
+
+        /* .content ul {
+            padding-left: 20px;
+        } */
+
+        li {
+            list-style: number;
+        }
+       
+        .delete{
+            width: 50px;
+            padding: 5px;
+            font-size: 12px;
+            font-weight: 100;
+            margin-left: 20%;
+            background-color: red;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+           
+        }
+        .delete:hover{
+            background-color: rgb(190, 48, 48);
+        }
+        /* .content ul li{
+        } */
+        .list{
+            border: 2px solid red;
+            list-style-position: inside;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="head">
+            <h1>Todo List </h1>
+        </div>
+        <input type="text" name="list" id="list" placeholder="Enter  your list">
+        <button>Add List</button>
+        <div class="hide-scrollbar">
+            <ul>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let input = document.querySelector("input");
+        let btn = document.querySelector("button");
+        let content = document.querySelector("li");
+        let ul = document.querySelector("ul");
+        btn.addEventListener("click", function () {
+            let item = document.createElement("li");
+            item.innerHTML = input.value;
+            item.classList.add("list");
+
+            let btn = document.createElement("button");
+            btn.innerText = "delete";
+            btn.classList.add("delete");
+
+            item.appendChild(btn);
+            ul.appendChild(item);
+            input.value = "";
+        })
+        ul.addEventListener("click", function(evnt){
+            if(evnt.target.nodeName == "BUTTON"){
+                let listItem = evnt.target.parentElement;
+                listItem.remove();
+                console.log('deleted');
+                
+            }
+        })
+        // let delBtns = document.querySelectorAll(".delete");
+        // for(btn of delBtns){
+        //     btn.addEventListener("click", function(){
+        //         console.log("Element deleted");
+        //         let par = this.parentElement;
+        //         par.remove();
+        //         alert("deleted")
+        //     });
+        // }
+    </script>
+</body>
+
+</html>
